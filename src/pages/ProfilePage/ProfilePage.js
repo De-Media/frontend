@@ -9,7 +9,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Layout from '../../components/Layout';
-import PollPage from '../PollPage/PollPage';
+import PollList from '../../components/Poll';
 
 const ProfilePage = () => {
 	const userName = 'Aryan Dixit';
@@ -29,31 +29,41 @@ const ProfilePage = () => {
 	const polls = [
 		{
 			id: 1,
-			text: 'What do you like most?',
-			options: [
-				{
+			description: 'What do you like most?',
+			options: {
+				1: {
+					id: 1,
 					label: 'Mountain',
 					value: 'Mountain',
+					count: 30,
 				},
-				{
+				2: {
+					id: 2,
 					label: 'River',
 					value: 'River',
+					count: 20,
 				},
-			],
+			},
+			selected: 0,
 		},
 		{
 			id: 2,
-			text: 'What do you like most?',
-			options: [
-				{
+			description: 'What do you like most?',
+			options: {
+				1: {
+					id: 1,
 					label: 'Mountain',
 					value: 'Mountain',
+					count: 45,
 				},
-				{
+				2: {
+					id: 2,
 					label: 'River',
 					value: 'River',
+					count: 20,
 				},
-			],
+			},
+			selected: 2,
 		},
 	];
 	return (
@@ -119,7 +129,7 @@ const ProfilePage = () => {
 								</Box>
 								<TabPanel value='1'>Posts</TabPanel>
 								<TabPanel value='2'>
-									<PollPage />
+									<PollList polls={polls} />
 								</TabPanel>
 							</Box>
 						</TabContext>
