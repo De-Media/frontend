@@ -8,13 +8,13 @@ import useAuth from '../../hooks/useAuth';
 const headerLinks = [
 	{
 		id: 1,
-		title: 'First Link',
-		to: '',
+		title: 'Home',
+		to: '/',
 	},
 	{
 		id: 2,
-		title: 'Second Link',
-		to: '',
+		title: 'Polls',
+		to: '/polls',
 	},
 	{
 		id: 3,

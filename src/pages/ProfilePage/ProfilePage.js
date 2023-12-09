@@ -9,6 +9,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Layout from '../../components/Layout';
+import PollPage from '../PollPage/PollPage';
 
 const ProfilePage = () => {
 	const userName = 'Aryan Dixit';
@@ -19,12 +20,42 @@ const ProfilePage = () => {
 	const trustScore = 89;
 	const trustColor = trustScore < 40 ? 'error' : trustScore < 60 ? 'warning' : 'success';
 
-	const [value, setValue] = React.useState(1);
+	const [value, setValue] = React.useState('2');
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
 
+	const polls = [
+		{
+			id: 1,
+			text: 'What do you like most?',
+			options: [
+				{
+					label: 'Mountain',
+					value: 'Mountain',
+				},
+				{
+					label: 'River',
+					value: 'River',
+				},
+			],
+		},
+		{
+			id: 2,
+			text: 'What do you like most?',
+			options: [
+				{
+					label: 'Mountain',
+					value: 'Mountain',
+				},
+				{
+					label: 'River',
+					value: 'River',
+				},
+			],
+		},
+	];
 	return (
 		<Layout>
 			<Helmet>
@@ -50,29 +81,27 @@ const ProfilePage = () => {
 								</div>
 							</div>
 							<div className='sm:w-2/3 sm:px-8 sm:py-4  mt-4 pt-4 sm:mt-0 text-center sm:text-left'>
-								<div>
-									<div className='flex items-center mb-3'>
-										<img src={bountyIcon} alt='bounty' className='bountyIcon' />
-										<div className='ml-3'>
-											<h2>
-												<strong>{bounty}</strong>
-											</h2>
-										</div>
+								<div className='flex items-center mb-4'>
+									<img src={bountyIcon} alt='bounty' className='bountyIcon' />
+									<div className='ml-3'>
+										<h2>
+											<strong>{bounty}</strong>
+										</h2>
 									</div>
+								</div>
 
-									<div className='flex items-center'>
-										<img src={trustIcon} alt='bounty' className='w-12' />
-										<div className='ml-2 flex-grow'>
-											<LinearProgress
-												style={{
-													height: 10,
-													borderRadius: 5,
-												}}
-												color={trustColor}
-												variant='determinate'
-												value={trustScore}
-											/>
-										</div>
+								<div className='flex items-center'>
+									<img src={trustIcon} alt='bounty' className='w-12' />
+									<div className='ml-2 flex-grow'>
+										<LinearProgress
+											style={{
+												height: 10,
+												borderRadius: 5,
+											}}
+											color={trustColor}
+											variant='determinate'
+											value={trustScore}
+										/>
 									</div>
 								</div>
 							</div>
@@ -84,12 +113,14 @@ const ProfilePage = () => {
 									<TabList
 										onChange={handleChange}
 										aria-label='lab API tabs example'>
-										<Tab label='Posts' value={1} />
-										<Tab label='Polls' value={2} />
+										<Tab label='Posts' value='1' />
+										<Tab label='Polls' value='2' />
 									</TabList>
 								</Box>
-								<TabPanel value={1}>Posts</TabPanel>
-								<TabPanel value={2}>Polls</TabPanel>
+								<TabPanel value='1'>Posts</TabPanel>
+								<TabPanel value='2'>
+									<PollPage />
+								</TabPanel>
 							</Box>
 						</TabContext>
 					</div>
