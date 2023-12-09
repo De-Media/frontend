@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import MetamaskLogo from "../../assets/svg/MetamaskLogo";
+import Logo from "../../assets/images/full-logo.png";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -28,15 +29,16 @@ const LoginPage = () => {
       <Helmet>
         <title>DeMedia | Login</title>
       </Helmet>
-      <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
+      <div className="flex flex-col items-center justify-center h-screen bg-white relative">
         <button
           type="button"
           onClick={handleInteract}
-          className="border-2 border-black px-2 py-2 bg-white rounded-xl md:w-1/4 w-full transform transition duration-5000 hover:scale-105"
+          className="px-2 py-2 bg-white shadow-2xl rounded-xl md:w-1/4 w-full transform transition duration-5000 hover:scale-105"
         >
-          <span className="text-4xl font-bold">Login with</span>
+          <span className="text-xl font-bold">Login with</span>
           <MetamaskLogo />
         </button>
+        <img src={Logo} alt="Logo" className="absolute bottom-10 w-36" />
       </div>
     </>
   );
