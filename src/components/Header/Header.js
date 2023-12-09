@@ -1,24 +1,74 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/full-logo.png";
 import { Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+
+const headerLinks = [
+  {
+    id: 1,
+    title: "First Link",
+    to: "",
+  },
+  {
+    id: 2,
+    title: "Second Link",
+    to: "",
+  },
+  {
+    id: 3,
+    title: "Third Link",
+    to: "",
+  },
+  {
+    id: 4,
+    title: "Fourth Link",
+    to: "",
+  },
+];
 
 const Header = () => {
-  const onLogout = () => {
-    console.log("Logout called");
+  const navigate = useNavigate();
+
+  const { signOut } = useAuth();
+
+  const handleOpenProfilePage = () => {
+    navigate("/profile");
+  };
+  const handleSignout = () => {
+    signOut();
   };
 
+  const profileLinks = [
+    {
+      id: 1,
+      title: "Profile",
+      onClick: handleOpenProfilePage,
+    },
+    {
+      id: 2,
+      title: "Sign out",
+      onClick: handleSignout,
+    },
+  ];
+
   return (
-    <header class="text-gray-600 body-font">
-      <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <Link class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+    <header className="text-gray-600 body-font">
+      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <Link className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
           <img src={logo} width={200} alt="Logo" />
         </Link>
-        <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-          <Link class="mr-5 hover:text-gray-900">First Link</Link>
-          <Link class="mr-5 hover:text-gray-900">Second Link</Link>
-          <Link class="mr-5 hover:text-gray-900">Third Link</Link>
-          <Link class="mr-5 hover:text-gray-900">Fourth Link</Link>
+        <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+          {headerLinks.map((link) => (
+            <Link
+              key={link.id}
+              to={link.to}
+              className="mr-5 hover:text-gray-900"
+            >
+              {link.title}
+            </Link>
+          ))}
         </nav>
         <Menu as="div" className="relative inline-block text-left">
           <div>
@@ -40,24 +90,18 @@ const Header = () => {
           >
             <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
-                <Menu.Item>
-                  <a
-                    href="/profile"
-                    className={"text-gray-700 block px-4 py-2 text-sm"}
-                  >
-                    Profile
-                  </a>
-                </Menu.Item>
-                <Menu.Item>
-                  <button
-                    onClick={onLogout}
-                    className={
-                      "text-gray-700 block w-full px-4 py-2 text-left text-sm"
-                    }
-                  >
-                    Sign out
-                  </button>
-                </Menu.Item>
+                {profileLinks.map((link) => (
+                  <Menu.Item key={link.id}>
+                    <button
+                      onClick={link.onClick}
+                      className={
+                        "text-gray-700 block w-full px-4 py-2 text-left text-sm"
+                      }
+                    >
+                      {link.title}
+                    </button>
+                  </Menu.Item>
+                ))}
               </div>
             </Menu.Items>
           </Transition>
