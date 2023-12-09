@@ -1,14 +1,14 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import LinearProgress from '@mui/material/LinearProgress';
 import bountyIcon from '../../assets/images/bounty-3.webp';
 import trustIcon from '../../assets/images/bounty.png';
-import Layout from '../../components/Layout/Layout';
-import { Box, Tab, Tabs } from '@mui/material';
-
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-
-import TabContext from '@mui/lab/TabContext';
+import Layout from '../../components/Layout';
 
 const ProfilePage = () => {
 	const userName = 'Aryan Dixit';
@@ -27,26 +27,29 @@ const ProfilePage = () => {
 
 	return (
 		<Layout>
-			<section class='text-gray-600 body-font'>
-				<div class='container px-5 mx-auto flex flex-col'>
-					<div class='lg:w-4/6 mx-auto'>
-						<div class='flex flex-col sm:flex-row mt-10'>
-							<div class='sm:w-1/3 text-center sm:pr-8 sm:py-4'>
-								<div class='w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400'>
+			<Helmet>
+				<title>DeMedia | Profile Page</title>
+			</Helmet>
+			<section className='text-gray-600 body-font'>
+				<div className='container px-5 mx-auto flex flex-col'>
+					<div className='lg:w-4/6 mx-auto'>
+						<div className='flex flex-col sm:flex-row'>
+							<div className='sm:w-1/3 text-center sm:pr-8 sm:py-4'>
+								<div className='w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400'>
 									<img
 										className='inline-block rounded-full ring-2 ring-white'
 										src={userProfilePicture}
 										alt=''
 									/>
 								</div>
-								<div class='flex flex-col items-center text-center justify-center'>
-									<h2 class='font-medium title-font mt-4 text-gray-900 text-lg'>
+								<div className='flex flex-col items-center text-center justify-center'>
+									<h2 className='font-medium title-font mt-4 text-gray-900 text-lg'>
 										{userName}
 									</h2>
-									<div class='w-12 h-1 bg-indigo-500 rounded mt-2 mb-4'></div>
+									<div className='w-12 h-1 bg-indigo-500 rounded mt-2 mb-4'></div>
 								</div>
 							</div>
-							<div class='sm:w-2/3 sm:px-8 sm:py-4  mt-4 pt-4 sm:mt-0 text-center sm:text-left'>
+							<div className='sm:w-2/3 sm:px-8 sm:py-4  mt-4 pt-4 sm:mt-0 text-center sm:text-left'>
 								<div>
 									<div className='flex items-center mb-3'>
 										<img src={bountyIcon} alt='bounty' className='bountyIcon' />
@@ -74,6 +77,7 @@ const ProfilePage = () => {
 								</div>
 							</div>
 						</div>
+
 						<TabContext value={value}>
 							<Box sx={{ width: '100%' }}>
 								<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -94,27 +98,5 @@ const ProfilePage = () => {
 		</Layout>
 	);
 };
-
-function CustomTabPanel(props) {
-	const { children, value, index, ...other } = props;
-
-	return (
-		<div
-			role='tabpanel'
-			hidden={value !== index}
-			id={`simple-tabpanel-${index}`}
-			aria-labelledby={`simple-tab-${index}`}
-			{...other}>
-			{value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-		</div>
-	);
-}
-
-function a11yProps(index) {
-	return {
-		id: `simple-tab-${index}`,
-		'aria-controls': `simple-tabpanel-${index}`,
-	};
-}
 
 export default ProfilePage;
