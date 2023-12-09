@@ -1,6 +1,7 @@
 import { Button, Divider, IconButton, List, ListItem, TextField, Typography } from '@mui/material';
 import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import { addMedia } from '../../utils/contractFunctions';
 
 const PollForm = () => {
 	const [question, setQuestion] = React.useState('');
@@ -23,7 +24,19 @@ const PollForm = () => {
 		}
 	};
 
-	const onSubmit = () => {
+	const onSubmit = async () => {
+		const obj = {
+			title: question,
+			description: question,
+			isPoll: true,
+			polls: options,
+			_pA: 0,
+			_pB: 0,
+			_pC: 0,
+			_pubSignals: 0,
+		};
+		const res = await addMedia(obj);
+		console.log('response', res);
 		console.log('Submit');
 	};
 

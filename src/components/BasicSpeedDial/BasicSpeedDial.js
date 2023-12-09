@@ -21,7 +21,7 @@ const BasicSpeedDial = () => {
 		<>
 			<SpeedDial
 				ariaLabel='SpeedDial'
-				sx={{ position: 'absolute', bottom: 30, right: 30 }}
+				sx={{ position: 'fixed', bottom: 30, right: 30 }}
 				icon={<SpeedDialIcon />}>
 				<SpeedDialAction
 					icon={<BallotIcon />}
