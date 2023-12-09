@@ -1,0 +1,9 @@
+# .graphclientrc.yml
+sources:
+    - name: uniswapv2
+      handler:
+          graphql:
+              endpoint: https://api.studio.thegraph.com/query/60951/demedia/version/latest
+
+documents:
+    - ./src/query/query.graphql

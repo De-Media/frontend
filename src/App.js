@@ -1,5 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './components/Routes';
+import { WithSplashScreen } from './components/SplashScreen';
 import DataProvider from './context/DataContext/DataContext';
 
 function App() {
@@ -12,4 +13,4 @@ function App() {
 	);
 }
 
-export default App;
+export default WithSplashScreen(App);

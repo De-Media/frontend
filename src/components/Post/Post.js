@@ -60,7 +60,7 @@ const PostAction = ({ flag, selected, actionHandler }) => {
 				<Button
 					key={k}
 					className={selected === k + 1 ? 'activeBtn' : ''}
-					disabled={selected}
+					disabled={!!selected}
 					onClick={() => actionHandler(k + 1)}>
 					{o}
 				</Button>

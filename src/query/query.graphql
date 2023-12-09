@@ -1,0 +1,14 @@
+query GetQuery {
+	answereds(first: 5) {
+		id
+		_from
+		_mediaIndex
+		blockNumber
+	}
+	createds(first: 5) {
+		id
+		_from
+		_mediaIndex
+		blockNumber
+	}
+}
