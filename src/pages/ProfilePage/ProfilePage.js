@@ -10,6 +10,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Layout from '../../components/Layout';
 import PollList from '../../components/Poll';
+import PostList from '../../components/Post';
 
 const ProfilePage = () => {
 	const userName = 'Aryan Dixit';
@@ -20,7 +21,7 @@ const ProfilePage = () => {
 	const trustScore = 89;
 	const trustColor = trustScore < 40 ? 'error' : trustScore < 60 ? 'warning' : 'success';
 
-	const [value, setValue] = React.useState('2');
+	const [value, setValue] = React.useState('1');
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
@@ -63,6 +64,23 @@ const ProfilePage = () => {
 					count: 20,
 				},
 			},
+			selected: 2,
+		},
+	];
+
+	const posts = [
+		{
+			id: 1,
+			title: 'my title 1',
+			description: 'What do you like most?',
+			flag: 1,
+			selected: 0,
+		},
+		{
+			id: 2,
+			title: 'my title 2',
+			description: 'What do you like most?',
+			flag: 2,
 			selected: 2,
 		},
 	];
@@ -127,7 +145,9 @@ const ProfilePage = () => {
 										<Tab label='Polls' value='2' />
 									</TabList>
 								</Box>
-								<TabPanel value='1'>Posts</TabPanel>
+								<TabPanel value='1'>
+									<PostList posts={posts} />
+								</TabPanel>
 								<TabPanel value='2'>
 									<PollList polls={polls} />
 								</TabPanel>
