@@ -6,30 +6,40 @@ import SpeedDialAction from '@mui/material/SpeedDialAction';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import BallotIcon from '@mui/icons-material/Ballot';
 import { useNavigate } from 'react-router-dom';
-
-const actions = [
-	{ icon: <BallotIcon />, name: 'Poll', to: '/createPoll' },
-	{ icon: <NewspaperIcon />, name: 'Post', to: '/polls' },
-];
+import PollForm from '../../form/PollForm/PollForm';
+import Modal from '../Modal';
 
 const BasicSpeedDial = () => {
 	const navigate = useNavigate();
+	const [openPoll, setOpenPoll] = React.useState(false);
+
+	const handleClose = () => {
+		setOpenPoll(false);
+	};
 
 	return (
-		<SpeedDial
-			ariaLabel='SpeedDial'
-			sx={{ position: 'absolute', bottom: 30, right: 30 }}
-			icon={<SpeedDialIcon />}>
-			{actions.map((action) => (
+		<>
+			<SpeedDial
+				ariaLabel='SpeedDial'
+				sx={{ position: 'absolute', bottom: 30, right: 30 }}
+				icon={<SpeedDialIcon />}>
 				<SpeedDialAction
-					key={action.name}
-					icon={action.icon}
-					tooltipTitle={action.name}
+					icon={<BallotIcon />}
+					tooltipTitle='Poll'
 					tooltipOpen
-					onClick={() => navigate(action.to)}
+					onClick={() => {}}
 				/>
-			))}
-		</SpeedDial>
+				<SpeedDialAction
+					icon={<NewspaperIcon />}
+					tooltipTitle='Post'
+					tooltipOpen
+					onClick={() => setOpenPoll(true)}
+				/>
+			</SpeedDial>
+			<Modal title='Create Poll' open={openPoll} handleClose={handleClose}>
+				<PollForm />
+			</Modal>
+		</>
 	);
 };
 
