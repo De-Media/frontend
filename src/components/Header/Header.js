@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Header = () => {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
+
 
   const { signOut, isAuthenticated } = useAuth();
 
@@ -16,13 +17,13 @@ const Header = () => {
     setaddress(sessionStorage.getItem("wallet-address"));
   }, [isAuthenticated]);
 
-  const handleOpenProfilePage = () => {
-    navigate("/profile");
-  };
-  const handleSignout = () => {
-    signOut();
-  };
-
+	const handleOpenProfilePage = () => {
+		navigate('/profile');
+	};
+	const handleSignout = () => {
+		signOut();
+	};
+  
   const handleConnectWallet = async () => {
     try {
       const accounts = await window.ethereum.request({
