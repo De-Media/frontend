@@ -30,9 +30,9 @@ const Header = () => {
   //     : sessionStorage.setItem("anon-aadhaar-status", "logged-out");
   // }, [anonAadhaar]);
 
-  useEffect(() => {
-    setaddress(sessionStorage.getItem("wallet-address"));
-  }, [isAuthenticated]);
+	useEffect(() => {
+		setaddress(sessionStorage.getItem('wallet-address'));
+	}, [isAuthenticated]);
 
   const handleOpenProfilePage = () => {
     navigate("/profile");

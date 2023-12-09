@@ -27,7 +27,7 @@ const BasicSpeedDial = () => {
 					icon={<BallotIcon />}
 					tooltipTitle='Poll'
 					tooltipOpen
-					onClick={() => {}}
+					onClick={() => setOpenPoll(true)}
 				/>
 				<SpeedDialAction
 					icon={<NewspaperIcon />}
