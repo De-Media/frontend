@@ -1,11 +1,12 @@
-
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import Layout from "../../components/Layout";
-import Alert from "@mui/material/Alert";
+import Layout from '../../components/Layout';
 import BasicSpeedDial from '../../components/BasicSpeedDial';
+import { DataContext } from '../../context/DataContext';
 
 const HomePage = () => {
+	const data = useContext(DataContext);
+
 	return (
 		<Layout>
 			<Helmet>
