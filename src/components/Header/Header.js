@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { LogInWithAnonAadhaar, useAnonAadhaar } from 'anon-aadhaar-react';
+// import { LogInWithAnonAadhaar, useAnonAadhaar } from 'anon-aadhaar-react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/full-logo.png';
 import { Menu, Transition } from '@headlessui/react';
@@ -142,7 +142,7 @@ const Header = () => {
 						</span>
 						{loginStep === 1 && <MetamaskLogo />}
 					</button>
-					<LogInWithAnonAadhaar />
+					{/* <LogInWithAnonAadhaar /> */}
 				</div>
 			</Modal>
 			<div className='container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center'>
