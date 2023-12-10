@@ -41,7 +41,7 @@ export const Poll = ({ text, options, selected }) => {
 							</Typography>
 							{selectedIndex ? (
 								<Typography sx={{ fontSize: 14 }} color='text.secondary'>
-									{o[1].count}%
+									{o[1].count}
 								</Typography>
 							) : null}
 						</ListItemButton>

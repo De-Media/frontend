@@ -14,25 +14,27 @@ const HomePage = () => {
 
 	const getData = async (i) => {
 		try {
-			console.log('calling getData ', i);
 			const d = await getMedia({ mediaIndex: i });
-			console.log('calling getData ', d);
 			if (d) {
 				const converted = convert(d);
 				// setData([...data, converted]);
 				_data.current.push(converted);
 				getData(i + 1);
 			} else {
-				console.log('close');
 				setData(_data.current);
 			}
 		} catch (err) {
-			console.log(err);
 			setData(_data.current);
 		}
 	};
 
 	getData(1);
+
+	const onClose = () => {
+		_data.current = [];
+		setData([]);
+		getData(1);
+	};
 
 	return (
 		<Layout>
@@ -40,7 +42,7 @@ const HomePage = () => {
 				<title>DeMedia | Home</title>
 			</Helmet>
 			<List items={data} />
-			<BasicSpeedDial />
+			<BasicSpeedDial onClose={onClose} />
 		</Layout>
 	);
 };

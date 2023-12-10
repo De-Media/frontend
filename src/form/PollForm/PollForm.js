@@ -34,10 +34,14 @@ const PollForm = () => {
 			_pB: 0,
 			_pC: 0,
 			_pubSignals: 0,
+			flag: 0,
 		};
 		const res = await addMedia(obj);
-		console.log('response', res);
-		console.log('Submit');
+		if (res) {
+			onReset();
+			console.log('response', res);
+			console.log('Submit');
+		}
 	};
 
 	const onReset = () => {
@@ -69,7 +73,7 @@ const PollForm = () => {
 			/>
 			{options && options.length ? (
 				<List aria-label='options' className='border mb-3'>
-					{options?.map((o, k, i) => (
+					{options?.map((o, k) => (
 						<ListItem
 							key={k}
 							className='op-1'
@@ -77,7 +81,7 @@ const PollForm = () => {
 								<IconButton
 									edge='end'
 									aria-label='delete'
-									onClick={() => deleteOption(i)}>
+									onClick={() => deleteOption(k)}>
 									<CloseIcon sx={{ fontSize: 14 }} />
 								</IconButton>
 							}>

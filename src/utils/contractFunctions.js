@@ -19,28 +19,21 @@ window.ethereum
 		DeMediaContract = new ethers.Contract(ContractAddress, ContractABI, signer);
 	});
 
-export const addMedia = async ({
-	title,
-	description,
-	isPoll,
-	polls,
-	_pA,
-	_pB,
-	_pC,
-	_pubSignals,
-}) => {
+export const addMedia = async ({ title, description, polls, flag }) => {
 	try {
-		const setMoodPromise = DeMediaContract.addMedia({
-			title,
-			description,
-			isPoll,
+		// const setMoodPromise = await DeMediaContract.addMedia({
+		// 	media: [title, description],
+		// 	polls,
+		// 	flag: ethers.toBigInt(flag),
+		// 	tags: [],
+		// });
+		const setMoodPromise = await DeMediaContract.addMedia(
+			[title, description],
 			polls,
-			_pA,
-			_pB,
-			_pC,
-			_pubSignals,
-		});
-		return await setMoodPromise;
+			ethers.toBigInt(flag),
+			[]
+		);
+		return setMoodPromise;
 		// show success massage to user
 	} catch (err) {
 		// console.log("error in castVote", error.message);
@@ -50,10 +43,7 @@ export const addMedia = async ({
 
 export const getMedia = async ({ mediaIndex }) => {
 	try {
-		console.log('getmedia');
 		const setMoodPromise = await DeMediaContract.getMedia(ethers.toBigInt(mediaIndex));
-
-		console.log('getmedia', setMoodPromise);
 		return setMoodPromise;
 		// show success massage to user
 	} catch (err) {
@@ -99,7 +89,10 @@ export const convert = (obj) => {
 	res.tags = obj[2];
 	res.flag = parseInt(obj[3]);
 	res.isPoll = obj[4];
-	res.options = obj[5];
+	res.options = {};
+	for (const d of Object.entries(obj[5])) {
+		res.options[parseInt(d[0]) + 1] = { label: d[1] };
+	}
 	res.counts = parseInt(obj[6]);
 	res.yes = parseInt(obj[7]);
 	res.no = parseInt(obj[8]);
