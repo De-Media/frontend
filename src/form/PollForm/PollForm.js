@@ -1,6 +1,7 @@
 import { Button, Divider, IconButton, List, ListItem, TextField, Typography } from '@mui/material';
 import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import { addMedia } from '../../utils/contractFunctions';
 
 const PollForm = () => {
 	const [question, setQuestion] = React.useState('');
@@ -23,8 +24,24 @@ const PollForm = () => {
 		}
 	};
 
-	const onSubmit = () => {
-		console.log('Submit');
+	const onSubmit = async () => {
+		const obj = {
+			title: question,
+			description: question,
+			isPoll: true,
+			polls: options,
+			_pA: 0,
+			_pB: 0,
+			_pC: 0,
+			_pubSignals: 0,
+			flag: 0,
+		};
+		const res = await addMedia(obj);
+		if (res) {
+			onReset();
+			console.log('response', res);
+			console.log('Submit');
+		}
 	};
 
 	const onReset = () => {
@@ -56,7 +73,7 @@ const PollForm = () => {
 			/>
 			{options && options.length ? (
 				<List aria-label='options' className='border mb-3'>
-					{options?.map((o, k, i) => (
+					{options?.map((o, k) => (
 						<ListItem
 							key={k}
 							className='op-1'
@@ -64,7 +81,7 @@ const PollForm = () => {
 								<IconButton
 									edge='end'
 									aria-label='delete'
-									onClick={() => deleteOption(i)}>
+									onClick={() => deleteOption(k)}>
 									<CloseIcon sx={{ fontSize: 14 }} />
 								</IconButton>
 							}>
